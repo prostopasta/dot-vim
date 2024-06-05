@@ -2,8 +2,8 @@
 
 echo " Script will install ShellCheck and ViM config"
 
-mv .vim ~/.vim
-mv .vimrc ~/.vimrc
+mv ./.vim ~/.vim
+mv ./.vimrc ~/.vimrc
 if [ $? ] ; then
   echo "ViM configuration was updated"
 else
