@@ -45,8 +45,7 @@ else
 fi
 
 currdir=$PWD
-cmd="yes_or_no \"Do you want to remove the cloned directory $currdir ?\" && cd .. && rm -rf $currdir"
-if [ "$(eval "$cmd")" ] ; then
+if [ "$(yes_or_no \"Do you want to remove the cloned directory $currdir ?\" && cd .. && rm -rf $currdir)" ] ; then
   echo "$ss Directory removed"
 else
   echo "$ss Failed to remove directory.."
