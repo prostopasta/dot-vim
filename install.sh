@@ -31,7 +31,10 @@ fi
 release=$(cat /etc/*-release | grep ID_LIKE=)
 if [[ $release = *"rhel"* ]]; then 
 	echo "$ss System is RHEL-based"; 
-	cmd="sudo yum update -y && sudo yum install epel-release ShellCheck -y"
+	cmd="sudo yum update -y && \
+	     sudo yum install epel-release -y && \
+	     sudo yum install ShellCheck -y
+	     sudo yum install vim-enhanced -y"
 	if [ "$(eval "$cmd")" ] ; then
   	  echo "$ss RedHat distros: ShellCheck installed"
 	else
