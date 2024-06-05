@@ -21,7 +21,7 @@ function yes_or_no {
 }
 
 echo "$ss Script will install ShellCheck and ViM config"
-if mv -f ./.vim ~/.vim && mv -f ./.vimrc ~/.vimrc ; then
+if mv -ft ~ ./.vim ./.vimrc ; then
   echo "$ss ViM configuration was updated"
 else
   echo "$ss Failed to install ViM config.."
