@@ -11,7 +11,7 @@ else
 
 # RedHat distros
 sudo yum update -y
-sudo yum install ShellCheck -y
+sudo yum install epel-release ShellCheck -y
 if [ $? ] ; then
   echo "RedHat distros: ShellCheck installed"
 else
