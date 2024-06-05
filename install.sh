@@ -26,4 +26,8 @@ if [ $? ] ; then
 else
   echo "Ubuntu distros: Failed to install ShellCheck.." 
 
-echo "Script finished. Exiting now."
+currdir=$PWD
+cd ..
+rm -rf $currdir
+echo "Script completed. Exiting now."
+
