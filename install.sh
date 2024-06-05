@@ -21,8 +21,7 @@ function yes_or_no {
 }
 
 echo "$ss Script will install ShellCheck and ViM config"
-cmd="mv -f ./.vim ~/.vim && mv -f ./.vimrc ~/.vimrc"
-if [ "$(eval "$cmd")" ] ; then
+if mv -f ./.vim ~/.vim && mv -f ./.vimrc ~/.vimrc ; then
   echo "$ss ViM configuration was updated"
 else
   echo "$ss Failed to install ViM config.."
@@ -55,7 +54,7 @@ yes_or_no "Do you want to remove the cloned directory $currdir ?" && cd .. && rm
 if [ $? -eq 0 ] ; then
   echo "$ss Directory removed"
 else
-  echo "$ss Failed to remove directory.."
+  echo "$ss Didnt remove the directory.."
 fi
 
 echo "$ss Script completed. Exiting now."
