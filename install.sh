@@ -5,7 +5,7 @@ ss="--->"
 
 function yes_or_no {
   while true; do
-    read -rp "$* [y/n]:" yesno
+    read -rp "$ss $* [y/n]:" yesno
     case $yesno in
         [Yy]* )
             echo "$ss You answered yes"
@@ -45,7 +45,9 @@ else
 fi
 
 currdir=$PWD
-if [ "$(yes_or_no \"Do you want to remove the cloned directory $currdir ?\" && cd .. && rm -rf $currdir)" ] ; then
+
+yes_or_no "Do you want to remove the cloned directory $currdir ?" && cd .. && rm -rf "$currdir"
+if [ $? -eq 0 ] ; then
   echo "$ss Directory removed"
 else
   echo "$ss Failed to remove directory.."
