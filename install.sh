@@ -21,31 +21,33 @@ function yes_or_no {
 }
 
 echo "$ss Script will install ShellCheck and ViM config"
-cmd="mv ./.vim ~/.vim && mv ./.vimrc ~/.vimrc"
+cmd="mv -f ./.vim ~/.vim && mv -f ./.vimrc ~/.vimrc"
 if [ "$(eval "$cmd")" ] ; then
   echo "$ss ViM configuration was updated"
 else
   echo "$ss Failed to install ViM config.."
 fi
 
-# RedHat distros
-cmd="sudo yum update -y && sudo yum install epel-release ShellCheck -y"
-if [ "$(eval "$cmd")" ] ; then
-  echo "$ss RedHat distros: ShellCheck installed"
-else
-  echo "$ss RedHat distros: Failed to install ShellCheck.."
-fi
-
-# Ubuntu distros
-cmd="sudo apt update -y && sudo apt install shellcheck -y"
-if [ "$(eval "$cmd")" ] ; then
-  echo "$ss Ubuntu distros: ShellCheck installed"
-else
-  echo "$ss Ubuntu distros: Failed to install ShellCheck.."
+release=$(cat /etc/*-release | grep ID_LIKE=)
+if [[ $release = *"rhel"* ]]; then 
+	echo "$ss System is RHEL-based"; 
+	cmd="sudo yum update -y && sudo yum install epel-release ShellCheck -y"
+	if [ "$(eval "$cmd")" ] ; then
+  	  echo "$ss RedHat distros: ShellCheck installed"
+	else
+  	  echo "$ss RedHat distros: Failed to install ShellCheck.."
+	fi
+elif [[ $release = *"debian"* ]]; then
+	echo "$ss System is DEBIAN-based"; 
+	cmd="sudo apt update -y && sudo apt install shellcheck -y"
+	if [ "$(eval "$cmd")" ] ; then
+  	  echo "$ss Ubuntu distros: ShellCheck installed"
+	else
+  	  echo "$ss Ubuntu distros: Failed to install ShellCheck.."
+	fi
 fi
 
 currdir=$PWD
-
 yes_or_no "Do you want to remove the cloned directory $currdir ?" && cd .. && rm -rf "$currdir"
 if [ $? -eq 0 ] ; then
   echo "$ss Directory removed"
