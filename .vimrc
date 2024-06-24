@@ -1,6 +1,8 @@
 set number
 set mouse=a
 
+command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+
 " Shellcheck for VIM
 " Taken from here:
 " https://jezenthomas.com/2015/05/shell-script-static-analysis-in-vim
